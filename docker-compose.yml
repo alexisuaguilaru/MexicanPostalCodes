@@ -1,0 +1,19 @@
+services:
+    PostalCodesDatabase:
+        image: mariadb
+        container_name: postal_codes_database
+        ports:
+            - 3306:3306
+
+        environment: 
+            MARIADB_USER: ${MARIADB_USER}
+            MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+            MARIADB_DATABASE: ${MARIADB_DATABASE}
+            MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+        
+        volumes:
+            - ./Database/Schema.sql:/docker-entrypoint-initdb.d/Schema.sql
+            - DataPostalCodes:/var/lib/mysql:Z
+
+volumes:
+    DataPostalCodes:
