@@ -12,7 +12,8 @@ services:
             MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
         
         volumes:
-            - ./Database/Schema.sql:/docker-entrypoint-initdb.d/Schema.sql
+            - ./Database/01_AlterDatabase.sql:/docker-entrypoint-initdb.d/01_AlterDatabase.sql
+            - ./Database/02_CreateTable.sql:/docker-entrypoint-initdb.d/02_CreateTable.sql
             - DataPostalCodes:/var/lib/mysql:Z
 
 volumes:
