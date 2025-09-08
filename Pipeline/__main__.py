@@ -1,12 +1,9 @@
 import os
-import time
 from Pipeline import *
 
 if __name__ == '__main__':
     UnzipFile()
     WorksheetsPostalCodes = ReadExcelSheets()
-
-    time.sleep(1)
 
     ConnectionToPostalCodesDatabase = SQLConnector(
         os.getenv('MARIADB_HOST','localhost'),

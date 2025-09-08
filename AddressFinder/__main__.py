@@ -12,7 +12,6 @@ ConnectionDatabase = SQLConnector(
     os.getenv('MARIADB_DATABASE','PostalCodes'),
 )
 
-
 @app.route('/',methods=['GET', 'POST'])
 def IndexHome():
 
@@ -30,4 +29,5 @@ if __name__ == '__main__':
     app.run(
         debug = True,
         port = 8080,
+        host = '0.0.0.0',
     )

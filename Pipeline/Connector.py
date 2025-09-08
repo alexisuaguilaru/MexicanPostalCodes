@@ -1,3 +1,4 @@
+import time
 import pymysql
 
 class SQLConnector:
@@ -32,6 +33,7 @@ class SQLConnector:
         connection to the database.
         """
 
+        time.sleep(1)
         try:
             self._Connection = pymysql.connect(
                 **self._ConfigConnection,

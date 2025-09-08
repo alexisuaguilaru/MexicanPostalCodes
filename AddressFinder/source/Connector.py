@@ -1,3 +1,4 @@
+import time
 import pymysql
 
 class SQLConnector:
@@ -32,15 +33,18 @@ class SQLConnector:
         connection to the database.
         """
 
-        try:
-            self._Connection = pymysql.connect(
-                **self._ConfigConnection,
-                charset = 'utf8mb4',
-                cursorclass = pymysql.cursors.DictCursor
-            )
-            self._Cursor = self._Connection.cursor()
-        except Exception as error:
-            print(f"Exception/Error with creation of connection:\n{error}")
+        for _ in range(5):
+            time.sleep(3)
+            try:
+                self._Connection = pymysql.connect(
+                    **self._ConfigConnection,
+                    charset = 'utf8mb4',
+                    cursorclass = pymysql.cursors.DictCursor
+                )
+                self._Cursor = self._Connection.cursor()
+                break
+            except Exception as error:
+                print(f"Exception/Error with creation of connection:\n{error}")
     
     def __call__(
             self,

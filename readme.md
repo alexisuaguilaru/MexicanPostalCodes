@@ -1,7 +1,7 @@
 # Mexican Postal Codes Database
 
 ## Abstract
-This project aims to develop a simple interface in Flask for querying information about Mexican Postal Codes from a Database using SQL queries.
+This project aims to develop a simple interface in Flask for searching and completing information about address using a SQL Database with Mexican Postal Codes and related data.
 
 ## Database
 The data were downloaded from [Descarga de Códigos Postales](https://www.correosdemexico.gob.mx/SSLServicios/ConsultaCP/CodigoPostal_Exportar.aspx) and a full description is available on [Origen de los datos](https://github.com/eclipxe13/sepomexphp/blob/master/docs/DATABASE.md). The [SQL schema](./Database/Schema.sql) was created using both resource and renaming the fields (columns) with more useful and descriptive names. Only one table is used for the database because of the technical requirements for this assignment. 
@@ -31,6 +31,13 @@ SELECT DISTINCT ZoneLocation AS `Location Type`, COUNT(ZoneLocation) AS `Number 
 
 The previous queries can be executed from MaridDB shell using the default user and `docker exec -it postal_codes_database mariadb --user user_db --password`. 
 
+## Preview Web Interface
+The following screenshots show how the web interface looks:
+* Empty form
+![Preview01](./Resources/Preview01.png)
+* Form with search results
+![Preview02](./Resources/Preview02.png)
+
 ## Installation
 1. Clone this repository:
 ```bash
@@ -41,8 +48,12 @@ git clone https://github.com/alexisuaguilaru/MexicanPostalCodes.git
 cp .env_example .env
 ```
 3. Start service:
-```
+```bash
 docker compose up -d --build
+```
+4. Visit the service:
+```bash
+localhost:8080
 ```
 
 ## Technologies
