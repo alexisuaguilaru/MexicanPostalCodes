@@ -1,0 +1,62 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #000000;
+    background-color: #d1e8ff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: #0D47A1;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.Instructions {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.FormContainer {
+    display: flex;            
+    justify-content: center;  
+    align-items: center;
+}
+
+.SearchForm {
+    background: #457dd0;
+    padding: 20px;
+    border: 2px solid #1100ff;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.InputForm {
+    color: white;
+    font-weight: bold;
+}
+
+.ButtonsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.button {
+    background: #0D47A1;
+    color: white;
+    cursor: pointer;
+    flex: 1; 
+}
+.button:hover {
+    background: white;
+    color: #0D47A1;
+}

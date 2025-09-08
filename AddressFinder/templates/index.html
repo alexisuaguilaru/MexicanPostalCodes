@@ -8,32 +8,53 @@
     <div class='ContainerForm'>
         <header>
             <h1>🔍 Buscador de Direcciones 🔍</h1>
-            <p> LLena el siguiente formulario con los datos conocidos </p>
         </header>
 
-        <form method='POST'>
-            {{ Form.hidden_tag() }}
+        <div class='Instructions'>
+            <p> LLena el siguiente formulario con los datos conocidos. <br>
+                El código postal debe que ser un número de 5 dígitos </p>
+        </div>
 
-            <div class='SearchForm'>
+        <div class='FormContainer'>
+            <form method='POST'>
+                {{ Form.hidden_tag() }}
+                
+                <div class='SearchForm'>
+                    
+                    <div class='InputForm'>
+                        {{ Form.PostalCode.label }}<br>
+                        {{ Form.PostalCode() }}
+                    </div>
+                    <br>
 
-                {{ Form.PostalCode.label }}
-                {{ Form.PostalCode() }}
+                    <div class='InputForm'>
+                        {{ Form.Location.label }}<br>
+                        {{ Form.Location() }}
+                    </div>
+                    <br>
 
-                {{ Form.Location.label }}
-                {{ Form.Location() }}
+                    <div class='InputForm'>
+                        {{ Form.City.label }}<br>
+                        {{ Form.City() }}
+                    </div>
+                    <br>
 
-                {{ Form.City.label }}
-                {{ Form.City() }}
+                    <div class='InputForm'>
+                        {{ Form.District.label }}<br>
+                        {{ Form.District() }}
+                    </div>
+                    <br>
 
-                {{ Form.District.label }}
-                {{ Form.District() }}
+                    <div class='InputForm'>
+                        {{ Form.State.label }}<br>
+                        {{ Form.State() }} 
+                    </div>
+                </div>
+                <br>
 
-                {{ Form.State.label }}
-                {{ Form.State() }}
-
-            </div>
-            
-            {{ Form.AutocompleteButton() }}
-            {{ Form.CleanButton() }}
-
-        </form>
+                <div class='ButtonsContainer'>
+                    {{ Form.AutocompleteButton(class='button') }}
+                    {{ Form.CleanButton(class='button') }}
+                </div>
+            </form>
+        </div>
