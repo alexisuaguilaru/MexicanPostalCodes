@@ -11,7 +11,7 @@ class SQLConnector:
         ):
         """
         Class for managing the connection to 
-        a MaridaDB Datbase for only insert 
+        a MaridaDB Database for only insert 
         values into tables.
         """
 

@@ -9,6 +9,28 @@ The data were downloaded from [Descarga de Códigos Postales](https://www.correo
 ## Pipeline
 The database (table) was populated with a Python script which dumps the data downloaded from [Descarga de Códigos Postales](https://www.correosdemexico.gob.mx/SSLServicios/ConsultaCP/CodigoPostal_Exportar.aspx). Creates a connection to the database using PyMySQL which is used to insert the postal code records into. This procedure is described in [Pipeline](./Pipeline).
 
+## Query Examples
+Some interesting questions about the postal codes can be answered with simple SQL queries. Some of them are:
+
+1. How many cities are there in Mexico? There are 645 cities.
+```SQL
+SELECT COUNT(DISTINCT CityName) AS `Number of Cities` FROM PostalCodes WHERE CityName != 'None';
+```
+2. What is the valid range of postal codes in Mexico? From 01000 to 99998
+```SQL
+SELECT MIN(PostalCode) as `Minimum Recorded Postal Code`, MAX(PostalCode) AS `Maximum Recorded Postal Code` FROM PostalCodes
+```
+3. List of locations that include "María" in their name
+```SQL
+SELECT LocationName AS `Location with 'María' in its Name` FROM PostalCodes WHERE LocationName LIKE '%María%';
+```
+4. Are there more urban or rural locations? There are more rural locations than urban locations
+```SQL
+SELECT DISTINCT ZoneLocation AS `Location Type`, COUNT(ZoneLocation) AS `Number of Locations` FROM PostalCodes GROUP BY ZoneLocation HAVING ZoneLocation = 'Rural' OR ZoneLocation = 'Urbano' ORDER BY `Number of Locations` DESC
+```
+
+The previous queries can be executed from MaridDB shell using the default user and `docker exec -it postal_codes_database mariadb --user user_db --password`. 
+
 ## Installation
 1. Clone this repository:
 ```bash
