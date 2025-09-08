@@ -1,0 +1,39 @@
+<html lang='es'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Buscador de Direcciones</title>
+    <link rel='stylesheet' href="{{ url_for('static',filename='base.css') }}">
+</head>
+<body>
+    <div class='ContainerForm'>
+        <header>
+            <h1>🔍 Buscador de Direcciones 🔍</h1>
+            <p> LLena el siguiente formulario con los datos conocidos </p>
+        </header>
+
+        <form method='POST'>
+            {{ Form.hidden_tag() }}
+
+            <div class='SearchForm'>
+
+                {{ Form.PostalCode.label }}
+                {{ Form.PostalCode() }}
+
+                {{ Form.Location.label }}
+                {{ Form.Location() }}
+
+                {{ Form.City.label }}
+                {{ Form.City() }}
+
+                {{ Form.District.label }}
+                {{ Form.District() }}
+
+                {{ Form.State.label }}
+                {{ Form.State() }}
+
+            </div>
+            
+            {{ Form.AutocompleteButton() }}
+            {{ Form.CleanButton() }}
+
+        </form>
