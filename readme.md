@@ -34,8 +34,11 @@ The previous queries can be executed from MaridDB shell using the default user a
 ## Preview Web Interface
 The following screenshots show how the web interface looks:
 * Empty form
+ 
 ![Preview01](./Resources/Preview01.png)
+
 * Form with search results
+
 ![Preview02](./Resources/Preview02.png)
 
 ## Installation
