@@ -1,9 +1,12 @@
 import os
+import time
 from Pipeline import *
 
 if __name__ == '__main__':
     UnzipFile()
     WorksheetsPostalCodes = ReadExcelSheets()
+
+    time.sleep(1)
 
     ConnectionToPostalCodesDatabase = SQLConnector(
         os.getenv('MARIADB_HOST','localhost'),
@@ -11,15 +14,21 @@ if __name__ == '__main__':
         os.getenv('MARIADB_PASSWORD','password_db'),
         os.getenv('MARIADB_DATABASE','PostalCodes'),
     )
+    print(" Connection to Database ".center(65,'='))
 
-    QueryInsert = "INSERT INTO PostalCodes VALUES (" + ', '.join(['%s']*14) + ")"
+    QueryInsert = """
+    INSERT INTO PostalCodes (PostalCode,LocationName,LocationType,DistrictName,
+    StateName,CityName,PostalCodeAdminName,StateCode,PostalCodeAdminCode,LocationTypeCode,
+    DistrictCode,LocationConsecutiveCode,ZoneLocation,CityCode) VALUES (""" + ', '.join(['%s']*14) + ")"
     for dataframe_worksheet in WorksheetsPostalCodes:
-        for record_postal_code in CleanPostalCodesDataframe(dataframe_worksheet):
-            # Convert np.NaN values into Python None 
-            nan_values = (record_postal_code != record_postal_code)
-            record_postal_code[nan_values] = None
-
+        State = dataframe_worksheet.loc[0,'d_estado']
+        print(f' Insert Postal Codes from {State} '.center(65,'='))
+        
+        dataframe_worksheet = CleanPostalCodesDataframe(dataframe_worksheet)
+        try:
             ConnectionToPostalCodesDatabase(
                 QueryInsert,
-                tuple(record_postal_code)
+                dataframe_worksheet,
             )
+        except Exception as e:
+            print(e)

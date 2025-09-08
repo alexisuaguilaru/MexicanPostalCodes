@@ -16,5 +16,24 @@ services:
             - ./Database/02_CreateTable.sql:/docker-entrypoint-initdb.d/02_CreateTable.sql
             - DataPostalCodes:/var/lib/mysql:Z
 
+    PipelineETL:
+        build:
+            context: ./Pipeline
+            dockerfile: Dockerfile
+        container_name: pipeline_etl
+        image: pipeline-etl-postal-codes
+
+        environment:
+            MARIADB_USER: ${MARIADB_USER}
+            MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+            MARIADB_DATABASE: ${MARIADB_DATABASE}
+            MARIADB_HOST: PostalCodesDatabase
+
+        volumes:
+            - ./Pipeline/CPdescargaxls.zip:/CPdescargaxls.zip
+
+        depends_on:
+            - PostalCodesDatabase
+
 volumes:
     DataPostalCodes:

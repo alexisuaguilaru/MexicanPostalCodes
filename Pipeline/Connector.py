@@ -52,5 +52,5 @@ class SQLConnector:
         of insert values into the database.
         """
 
-        self._Cursor.execute(Query,Data)
+        self._Cursor.executemany(Query,Data)
         self._Connection.commit()

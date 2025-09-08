@@ -9,4 +9,6 @@ def CleanPostalCodesDataframe(
     and return a numpy array of values
     """
 
-    return PostalCodesDataframe.drop(columns=['c_CP']).values
+    PostalCodesDataframeClean = PostalCodesDataframe.drop(columns=['c_CP']).values
+    PostalCodesDataframeClean[PostalCodesDataframeClean != PostalCodesDataframeClean] = None
+    return map(tuple,PostalCodesDataframeClean)

@@ -2,7 +2,8 @@
 USE PostalCodes;
 
 CREATE TABLE PostalCodes (
-    PostalCode CHAR(5) PRIMARY KEY, -- d_codigo
+    id_PostalCode INTEGER AUTO_INCREMENT PRIMARY KEY, -- Dummy identifier 
+    PostalCode CHAR(5), -- d_codigo
     LocationName TEXT, -- d_asenta
     LocationType VARCHAR(255), -- d_tipo_asenta
     DistrictName TEXT, -- D_mnpio
